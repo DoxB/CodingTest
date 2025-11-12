@@ -39,7 +39,7 @@ public class Main {
             }
         }
 
-        bw.write(Integer.toString(end + 1));
+        bw.write(Integer.toString(start));
         bw.flush();
         br.close();
         bw.close();
