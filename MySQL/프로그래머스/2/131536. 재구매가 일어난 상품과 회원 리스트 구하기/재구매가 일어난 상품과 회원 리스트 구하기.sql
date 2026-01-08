@@ -1,0 +1,18 @@
+-- 코드를 입력하세요
+WITH T1 AS (
+    SELECT
+        USER_ID,
+        PRODUCT_ID,
+        COUNT(*) AS CNT
+    FROM ONLINE_SALE
+    GROUP BY
+        USER_ID, PRODUCT_ID
+)
+SELECT
+    USER_ID,
+    PRODUCT_ID
+FROM T1
+WHERE CNT > 1
+ORDER BY
+    USER_ID,
+    PRODUCT_ID DESC;
