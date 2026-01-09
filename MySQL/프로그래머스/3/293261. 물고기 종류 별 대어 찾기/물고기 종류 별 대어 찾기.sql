@@ -1,0 +1,26 @@
+-- 코드를 작성해주세요
+WITH T1 AS (
+    SELECT
+        FISH_TYPE,
+        MAX(LENGTH) AS LENGTH
+    FROM FISH_INFO
+    GROUP BY
+        FISH_TYPE
+), T2 AS (
+    SELECT
+        I1.ID,
+        I1.FISH_TYPE,
+        I1.LENGTH
+    FROM FISH_INFO I1
+    JOIN T1 I2
+      ON I1.FISH_TYPE = I2.FISH_TYPE
+     AND I1.LENGTH = I2.LENGTH
+)
+SELECT
+    t.ID,
+    n.FISH_NAME,
+    t.LENGTH
+FROM T2 t
+JOIN FISH_NAME_INFO n
+  ON t.FISH_TYPE = n.FISH_TYPE
+ORDER BY t.ID;
