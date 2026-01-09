@@ -1,0 +1,33 @@
+-- 코드를 입력하세요
+WITH T1 AS (
+    SELECT
+        BOOK_ID,
+        SUM(SALES) AS SALES
+    FROM BOOK_SALES
+    WHERE SALES_DATE BETWEEN '2022-01-01' AND '2022-01-31'
+    GROUP BY
+        BOOK_ID
+), T2 AS (
+    SELECT
+        b.AUTHOR_ID,
+        b.CATEGORY,
+        (b.PRICE * t.SALES) AS TOTAL_SALES
+    FROM BOOK b
+    JOIN T1 t
+      ON b.BOOK_ID = t.BOOK_ID
+)
+SELECT
+    s.AUTHOR_ID,
+    a.AUTHOR_NAME,
+    s.CATEGORY,
+    SUM(s.TOTAL_SALES) AS TOTAL_SALES
+FROM AUTHOR a
+JOIN T2 s
+  ON s.AUTHOR_ID = a.AUTHOR_ID
+GROUP BY
+    s.AUTHOR_ID,
+    a.AUTHOR_NAME,
+    s.CATEGORY
+ORDER BY
+    s.AUTHOR_ID,
+    s.CATEGORY DESC;
