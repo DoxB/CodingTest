@@ -1,0 +1,23 @@
+-- 코드를 입력하세요
+WITH T1 AS (
+    SELECT
+        WRITER_ID,
+        SUM(PRICE) AS TOTAL_SALES
+    FROM
+        USED_GOODS_BOARD
+    WHERE
+        `STATUS` = 'DONE'
+    GROUP BY
+        WRITER_ID
+    HAVING
+        SUM(PRICE) >= 700000
+)
+SELECT
+    USER_ID,
+    NICKNAME,
+    TOTAL_SALES
+FROM
+    T1 t
+    JOIN USED_GOODS_USER u ON t.WRITER_ID = u.USER_ID
+ORDER BY
+    TOTAL_SALES;
