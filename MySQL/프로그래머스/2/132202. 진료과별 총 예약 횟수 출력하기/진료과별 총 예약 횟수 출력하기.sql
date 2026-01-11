@@ -1,0 +1,17 @@
+-- 코드를 입력하세요
+WITH T1 AS (
+    SELECT
+        APNT_YMD,
+        MCDP_CD
+    FROM APPOINTMENT
+    WHERE APNT_YMD BETWEEN '2022-05-01' AND '2022-05-31'
+)
+SELECT
+    MCDP_CD AS '진료과코드',
+    COUNT(APNT_YMD) AS '5월예약건수'
+FROM T1
+GROUP BY
+    MCDP_CD
+ORDER BY
+    2, 1;
+    
