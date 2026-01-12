@@ -1,0 +1,12 @@
+-- 코드를 작성해주세요
+SELECT
+    t.ITEM_ID,
+    n.ITEM_NAME
+FROM
+    ITEM_TREE t
+    JOIN ITEM_INFO n
+      ON t.ITEM_ID = n.ITEM_ID
+WHERE
+    t.PARENT_ITEM_ID IS NULL
+ORDER BY
+    t.ITEM_ID;
