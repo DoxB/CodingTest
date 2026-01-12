@@ -1,0 +1,18 @@
+-- 코드를 입력하세요
+WITH
+    T1 AS (
+        SELECT
+            PRODUCT_ID,
+            (PRICE DIV 10000) * 10000 AS PRICE_GROUP
+        FROM
+            PRODUCT
+    )
+SELECT
+    PRICE_GROUP,
+    COUNT(PRODUCT_ID) AS PRODUCTS
+FROM
+    T1
+GROUP BY
+    PRICE_GROUP
+ORDER BY
+    PRICE_GROUP;
