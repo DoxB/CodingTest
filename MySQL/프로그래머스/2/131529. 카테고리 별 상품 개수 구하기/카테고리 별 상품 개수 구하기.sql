@@ -1,0 +1,18 @@
+-- 코드를 입력하세요
+WITH
+    T1 AS (
+        SELECT
+            PRODUCT_ID,
+            SUBSTRING(PRODUCT_CODE, 1, 2) AS CATEGORY
+        FROM
+            PRODUCT
+    )
+SELECT
+    CATEGORY,
+    COUNT(PRODUCT_ID) AS PRODUCTS
+FROM
+    T1
+GROUP BY
+    CATEGORY
+ORDER BY
+    CATEGORY;
