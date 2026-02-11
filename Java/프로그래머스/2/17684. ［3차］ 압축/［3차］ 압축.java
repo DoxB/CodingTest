@@ -24,7 +24,7 @@ class Solution {
             String w = msg.substring(start, start + cnt - 1);
             dic.add(map.get(w));
             
-            if (start + cnt < n) {
+            if (start + cnt - 1 < n) {
                 String newWord = msg.substring(start, start + cnt);
                 map.put(newWord, curIdx++);
             }
