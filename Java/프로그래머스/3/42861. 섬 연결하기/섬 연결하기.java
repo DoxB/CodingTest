@@ -18,7 +18,7 @@ class Solution {
         }
         
         int cnt = 0;
-        while (!pq.isEmpty() && cnt < n) {
+        while (!pq.isEmpty() && cnt < n - 1) {
             Edge e = pq.remove();
             int parentA = find(e.start);
             int parentB = find(e.end);
@@ -36,7 +36,7 @@ class Solution {
         if (parent[a] == a) {
             return a;
         }
-        return find(parent[a]);
+        return parent[a] = find(parent[a]);
     }
     
     private static void union(int a, int b) {
