@@ -1,0 +1,56 @@
+import java.io.*;
+import java.util.Arrays;
+import java.util.StringTokenizer;
+
+class Main {
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int n = Integer.parseInt(br.readLine());
+		StringTokenizer st = new StringTokenizer(br.readLine());
+
+		int[] arr1 = new int[n];
+		int[] arr2 = new int[n];
+		for (int i = 0; i < n; i++) {
+			int num = Integer.parseInt(st.nextToken());
+			arr1[i] = num;
+			arr2[i] = num;
+		}
+
+		Arrays.sort(arr1);
+
+		int cnt = 0;
+		int start = -1;
+		int end = -1;
+
+		for (int i = 0; i < n; i++) {
+			if (arr1[i] != arr2[i]) {
+				cnt++;
+				if (start == -1) {
+					start = i;
+				}
+				end = i;
+			}
+		}
+
+		if (cnt == 0) {
+			System.out.println("yes");
+		} else if (cnt == 2) {
+			System.out.println("yes");
+			System.out.println("swap " + Integer.toString(start + 1) + " " + Integer.toString(end + 1));
+		} else {
+			int s = start;
+			int e = end;
+			while (start < end) {
+				if (arr1[start] == arr2[end]) {
+					start++;
+					end--;
+				} else {
+					System.out.println("no");
+					return;
+				}
+			}
+			System.out.println("yes");
+			System.out.println("reverse " + Integer.toString(s + 1) + " " + Integer.toString(e + 1));
+		}
+	}
+}
